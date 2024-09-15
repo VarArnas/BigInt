@@ -4,10 +4,10 @@
 #include <stdbool.h>
 #include "BigIntLib.h"
 
-#define intToBigInt 0
-#define lengthOfBigInt 6
+#define intToBigInt 78654645
+#define lengthOfBigInt 10
 
-#define stringToBigIntNum "465"
+#define stringToBigIntNum "-76785758456456"
 
 
 int main() {
