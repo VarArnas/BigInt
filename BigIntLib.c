@@ -6,13 +6,13 @@
 
 
 
-void MakeEmpty(BigInt* a){
+void makeEmpty(BigInt* a){
     for(int i=0; i< a->length; i++){
         a->digits[i] = 0;
     }
 }
 
-char* ToString(BigInt a){
+char* toString(BigInt a){
     int temp = 0;
     char* bigint = (char*)calloc((a.length), sizeof(char));
     if(bigint == NULL){
@@ -56,9 +56,10 @@ BigInt originateBigInt(int length, int number) {
     bigint.sign = (number > 0)? 0 : 1;
     bigint.length = length;
     bigint.digits = (int*)calloc(length, sizeof(int));
+    int posNumber = abs(number);
     for(int i=0; i<bigint.length; i++){
-        bigint.digits[i] = number%10;
-        number = number/10;
+        bigint.digits[i] = posNumber%10;
+        posNumber = posNumber/10;
     }
     return bigint;
 }
@@ -72,7 +73,7 @@ BigInt fromString(char* str) {
     num.digits = (int*) malloc(len * sizeof(int));
     for (int i = 0; i < len; i++) {
         if(str[len + temp - 1 - i] < 48 || str[len + temp - 1 - i] > 57){
-            printf("paduotam skaiciuje, buvo irasytas simbolis!!!\n");
+            printf("in the given integer as a string there where symbols!!!\n");
             exit(-1);
         }
         num.digits[i] = str[len + temp -1 - i] - '0';
@@ -99,16 +100,17 @@ bool isEmpty(BigInt a){
     return 1;
 }
 
-void printBigInt(BigInt* num) {
-    if(num->length < 1){
-        printf("ilgas sveikas skaicius buvo paduotas per trumpas\n");
+void printBigInt(BigInt num) {
+    if(num.length < 1){
+        printf("BigInt was given too short of length!!!\n");
         return;
     }
-    if(num->sign == 1){
+    remove_leading_zeros(&num);
+    if(num.sign == 1){
         printf("-");
     }
-    for (int i = num->length-1; i >= 0; i--) {
-        printf("%d", num->digits[i]);
+    for (int i = num.length-1; i >= 0; i--) {
+        printf("%d", num.digits[i]);
         if(i%3 == 0 && i != 0 ){
             printf(",");
         }
@@ -136,19 +138,22 @@ void swap(BigInt *a, BigInt *b) {
 }
 
 int compare(BigInt a, BigInt b) {
-    while (a.length > 1 && a.digits[a.length - 1] == 0) {
-        a.length--;
+    remove_leading_zeros(&a);
+    remove_leading_zeros(&b);
+    if(a.sign != b.sign){
+        return a.sign < b.sign;
     }
-    while (b.length > 1 && b.digits[b.length - 1] == 0) {
-        b.length--;
-    }
-    if (a.length != b.length) {
+    if (a.length != b.length && a.sign == 0) {
         return a.length > b.length;
+    }
+    if(a.length != b.length){
+        return a.length < b.length;
     }
 
     for (int i = a.length - 1; i >= 0; i--) {
         if (a.digits[i] != b.digits[i]) {
-            return a.digits[i] > b.digits[i];
+            if(a.sign == 0) return a.digits[i] > b.digits[i];
+            return a.digits[i] < b.digits[i];
         }
     }
 
