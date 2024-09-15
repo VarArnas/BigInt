@@ -2,10 +2,12 @@
 
 A program for implementing the BigInt (i.e. being able to do arithmetic with larger numbers than long double) in C utilizing dynamic memory allocation.  
 
-FUNCTIONS:
+IMPLEMENTED FUNCTIONS:
 
 --add - adds two BigInt data types and returns a pointer to the newly created BigInt
+
 --subtract - subtracts two BigInt data types and returns a pointer to the newly created BigInt
+
 --appendDigit - helper function, to append one digit to the start of the BigInt struct
 --MakeEmpty - helper function, to turn all BigInt digits to 0
 --ToString - returns a string holding BigInt digits, by reversing the structs digits order
