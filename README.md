@@ -11,15 +11,9 @@ FUNCTIONS
 
 - **subtract** - subtracts two BigInt data structures and returns a pointer to the newly created BigInt.
 
-- **appendDigit** - helper function, to append one digit to the start of the BigInt struct.
-
-- **makeEmpty** - helper function, to turn all BigInt digits to 0.
-
 - **toString** - returns a string holding BigInt digits, by reversing the structs digits order.
 
 - **cloneBigInt** - deep clones a BigInt structure and returns a BigInt.
-
-- **absolute** - makes the BigInt positive.
 
 - **originateBigInt** - creates a BigInt structure, from a given integer and the given length.
 
@@ -30,8 +24,6 @@ FUNCTIONS
 - **free_bigint** - releases the memory allocated for the BigInt struct.
 
 - **remove_leading_zeros** - removes any leading zeros inside a BigInt struct.
-
-- **swap** - swaps pointers of two variables of BigInt with one another.
 
 - **compare** - compares two BigInts, and returns 1 if the first BigInt given, is more or equal to the second BigInt, else returns 0.
 
